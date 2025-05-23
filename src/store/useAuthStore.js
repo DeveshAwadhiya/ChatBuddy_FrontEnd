@@ -4,7 +4,7 @@ import toast from "react-hot-toast";
 import { io } from "socket.io-client";
 
 const API_URL = import.meta.env.VITE_BACKEND_URL;
-const SOCKET_URL = API_URL.replace("/api", "");
+const SOCKET_URL = "https://chatbuddy-uy11.onrender.com/"
 
 export const useAuthStore = create((set, get) => ({
   authUser: null,
