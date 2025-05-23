@@ -4,7 +4,7 @@ import toast from "react-hot-toast";
 import { io } from "socket.io-client";
 
 const API_URL = import.meta.env.VITE_BACKEND_URL;
-const SOCKET_URL = import.meta.env.VITE_SOCKET_URL;
+const SOCKET_URL = import.meta.env.VITE_SOCKET_URL || import.meta.env.VITE_BACKEND_URL;
 
 export const useAuthStore = create((set, get) => ({
   authUser: null,
