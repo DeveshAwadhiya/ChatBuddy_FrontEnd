@@ -12,19 +12,22 @@ const HoneypotLoginPage = () => {
   const [message, setMessage] = useState("");
   const [loading, setLoading] = useState(false);
 
+  // Use environment variable or fallback to your backend URL
+  const BASE_URL = import.meta.env.VITE_BACKEND_URL 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setMessage("");
     setLoading(true);
     try {
-      await axios.post("/api/admin/login", {
+      await axios.post(`${BASE_URL}/adminUser/honeypot-attempts`, {
         username: formData.username,
         password: formData.password,
       });
-      // Always show invalid message — this is a honeypot!
+      // Always show invalid message — honeypot doesn't authenticate
       setMessage("Invalid credentials. Please try again.");
     } catch (error) {
       setMessage("Invalid credentials. Please try again.");
+      console.error("Honeypot login error:", error);
     } finally {
       setLoading(false);
       setFormData({ username: "", password: "" });
