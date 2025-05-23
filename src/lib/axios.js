@@ -1,8 +1,8 @@
-// src/lib/axios.js
-import axios from "axios";
+const baseURL = import.meta.env.VITE_BACKEND_URL;
 
-console.log("Axios baseURL:", baseURL);
-const baseURL = import.meta.env.VITE_BACKEND_URL || "https://chatbuddy-uy11.onrender.com/apii";
+if (!baseURL) {
+  throw new Error("VITE_BACKEND_URL is not defined");
+}
 
 export const axiosInstance = axios.create({
   baseURL,
