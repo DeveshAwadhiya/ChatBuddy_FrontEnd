@@ -21,6 +21,7 @@ const HoneypotLoginPage = () => {
         username: formData.username,
         password: formData.password,
       });
+      // Always show invalid message — this is a honeypot!
       setMessage("Invalid credentials. Please try again.");
     } catch (error) {
       setMessage("Invalid credentials. Please try again.");
