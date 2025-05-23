@@ -6,7 +6,6 @@ import { io } from "socket.io-client";
 const API_URL = import.meta.env.VITE_BASE_URL;
 const SOCKET_URL = API_URL.replace("/api", "");
 
-
 export const useAuthStore = create((set, get) => ({
   authUser: null,
   isSigningUp: false,
@@ -92,11 +91,12 @@ export const useAuthStore = create((set, get) => ({
     const { authUser, socket } = get();
     if (!authUser || socket?.connected) return;
 
-    const newSocket = io(BASE_URL, {
+    const newSocket = io(SOCKET_URL, {
       auth: {
         userId: authUser._id,
       },
       transports: ["websocket", "polling"],
+      withCredentials: true,
     });
 
     newSocket.on("connect", () => {
