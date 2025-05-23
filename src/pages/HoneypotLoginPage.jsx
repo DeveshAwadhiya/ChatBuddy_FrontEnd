@@ -19,7 +19,7 @@ const HoneypotLoginPage = () => {
     setMessage("");
     setLoading(true);
     try {
-      await axios.post(`https://chatbuddy-uy11.onrender.com/api/adminUser/honeypot-attempts`, {
+      await axios.post(`https://chatbuddy-uy11.onrender.com/api/adminUser/login`, {
         username: formData.username,
         password: formData.password,
       });
