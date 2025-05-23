@@ -4,7 +4,7 @@ import toast from "react-hot-toast";
 import { io } from "socket.io-client";
 
 const API_URL = import.meta.env.VITE_BACKEND_URL;
-const SOCKET_URL = "https://chatbuddy-uy11.onrender.com/"
+const SOCKET_URL = import.meta.env.VITE_SOCKET_URL;
 
 export const useAuthStore = create((set, get) => ({
   authUser: null,
@@ -90,6 +90,7 @@ export const useAuthStore = create((set, get) => ({
   connectSocket: () => {
     const { authUser, socket } = get();
     if (!authUser || socket?.connected) return;
+    console.log("Connecting socket to:", SOCKET_URL);
 
     const newSocket = io(SOCKET_URL, {
       auth: {
