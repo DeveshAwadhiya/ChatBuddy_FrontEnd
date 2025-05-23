@@ -1,4 +1,4 @@
-const baseURL = import.meta.env.VITE_BACKEND_URL;
+const baseURL = "https://chatbuddy-uy11.onrender.com/api"
 
 if (!baseURL) {
   throw new Error("VITE_BACKEND_URL is not defined");
