@@ -7,6 +7,8 @@ const AdminDashboard = () => {
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
 
+  const BASE_URL = import.meta.env.VITE_BACKEND_URL;
+
   useEffect(() => {
     const adminAuth = localStorage.getItem("adminAuth");
     if (!adminAuth) {
@@ -16,7 +18,7 @@ const AdminDashboard = () => {
 
     const fetchAttempts = async () => {
       try {
-        const res = await axios.get("/api/admin/dashboard");
+        const res = await axios.get(`${BASE_URL}/admin/dashboard`);
         if (Array.isArray(res.data)) {
           setAttempts(res.data);
         } else {
@@ -32,7 +34,7 @@ const AdminDashboard = () => {
     };
 
     fetchAttempts();
-  }, [navigate]);
+  }, [navigate, BASE_URL]);
 
   const handleLogout = () => {
     localStorage.removeItem("adminAuth");
@@ -42,7 +44,7 @@ const AdminDashboard = () => {
   const handleClearLogs = async () => {
     try {
       setLoading(true);
-      await axios.delete("/api/admin/dashboard");
+      await axios.delete(`${BASE_URL}/admin/dashboard`);
       setAttempts([]);
     } catch (error) {
       console.error("Failed to clear logs", error);
